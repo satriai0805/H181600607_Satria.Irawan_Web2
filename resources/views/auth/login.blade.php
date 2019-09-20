@@ -12,19 +12,19 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Contact') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                                @error('email')
+                                @error('Contact')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
-
+                         
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
@@ -37,39 +37,9 @@
                                     </span>
                                 @enderror
                             </div>
+
                         </div>
-                        <div class="row">
-                        <div class="col-md-4"></div>
-                        <div class="form-group col-md-4">
-                            <div class="captcha">
-                            <span>{!! captcha_img() !!}</span>
-                            <button type="button" class="btn btn-success"><i class="fa fa-refresh" id="refresh"></i></button>
-                            </div>
-                            </div>
-                        </div>
-                    <div class="row">
-                        <div class="col-md-4"></div>
-                            <div class="form-group col-md-4">
-                            <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha"></div>
-                        </div>
-                    <div class="row">
-                        <div class="col-md-4"></div>
-                        <div class="form-group col-md-4">
-                            <button type="submit" class="btn btn-success">Submit</button>
-                        </div>
-                    </div>
-                    <script type="text/javascript">
-                    $('#refresh').click(function(){
-                    $.ajax({
-                        type:'GET',
-                        url:'refreshcaptcha',
-                        success:function(data){
-                        $(".captcha span").html(data.captcha);
-                        }
-                    });
-                    });
-                    </script>
-                    
+
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
