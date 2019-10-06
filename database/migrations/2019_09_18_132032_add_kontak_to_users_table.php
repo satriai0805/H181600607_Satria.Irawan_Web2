@@ -15,7 +15,7 @@ class AddKontakToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-             $table->string('kontak')->unique();
+             $table->string('kontak')->unique()->after('email');
         });
     }
 
@@ -27,7 +27,7 @@ class AddKontakToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropColum('kontak');
         });
     }
 }

@@ -22,4 +22,18 @@ class KategoriPengumumanController extends Controller
 
         return view('kategori_pengumuman.show',compact('kategoriPengumuman'));
     }
+
+    public function create(){
+        $kategoriPengumuman=KategoriPengumuman::pluck('nama');
+
+        return view('kategori_pengumuman.create',compact('kategoriPengumuman'));
+    }
+
+    public function store(request $request){
+        $input = $request->all();
+
+        KategoriPengumuman::create($input);
+
+        return redirect(route('kategori_pengumuman.index'));
+    }
 }

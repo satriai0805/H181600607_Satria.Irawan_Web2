@@ -22,4 +22,18 @@ class KategoriArtikelController extends Controller
 
         return view('kategori_artikel.show',compact('kategoriArtikel'));
     }
+
+    public function create(){
+        $kategoriArtikel=KategoriArtikel::pluck('nama');
+
+        return view('kategori_artikel.create',compact('kategoriArtikel'));
+    }
+
+    public function store(request $request){
+        $input = $request->all();
+
+        KategoriArtikel::create($input);
+
+        return redirect(route('kategori_artikel.index'));
+    }
 }
