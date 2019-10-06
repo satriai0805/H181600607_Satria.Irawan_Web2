@@ -18,7 +18,7 @@ class BeritaController extends Controller
     public function show($id){
         //Eloquent
         //$Berita=Berita::where('id',$id)->first;
-        $listBerita=Berita::find($id);
+        $Berita=Berita::find($id);
 
         return view('berita.show',compact('Berita'));
     }

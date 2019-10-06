@@ -64,7 +64,6 @@ Route::get('/pengumuman/create','PengumumanController@create')->name('pengumuman
 Route::post('pengumuman','PengumumanController@store')->name('pengumuman.store');
 Route::get('/pengumuman/{id}','PengumumanController@show')->name('pengumuman.show');
 
-
 //crud Kategori Pengumuman
 Route::get('/kategori_pengumuman','KategoriPengumumanController@index')->name('kategori_pengumuman.index');
 Route::get('/kategori_pengumuman/create','KategoriPengumumanController@create')->name('kategori_pengumuman.create');

@@ -13,6 +13,20 @@
     @enderror
     </div>
 </div>
+
+<div class="form-group row">
+    <label for="isi" class="col-md-2 col form-label text-md-right">{{__('Isi')}}</label>
+
+    <div class="col-md-10">
+    {!! Form::textarea('isi', null,['class'=>'form-control ']); !!}
+    @error('isi')
+    <span class="invalid-feedback" role="alert">
+        <strong>{{ $messege }}</strong>
+    </span>
+    @enderror
+    </div>
+</div>
+
 <div class="form-group row">
     <label for="kategori_pengumuman_id" class="col-md-2 col form-label text-md-right">{{__('Kategori Pengumuman Id')}}</label>
 
@@ -20,18 +34,6 @@
     {!! Form::select('kategori_pengumuman_id', $Pengumuman,null, ["class"=> "form-control", "required"]) !!}
 
     @error('kategori_pengumuman_id')
-    <span class="invalid-feedback" role="alert">
-        <strong>{{ $messege }}</strong>
-    </span>
-    @enderror
-    </div>
-</div>
-<div class="form-group row">
-    <label for="isi" class="col-md-2 col form-label text-md-right">{{__('Isi')}}</label>
-
-    <div class="col-md-10">
-    {!! Form::textarea('isi', null,['class'=>'form-control ']); !!}
-    @error('isi')
     <span class="invalid-feedback" role="alert">
         <strong>{{ $messege }}</strong>
     </span>
