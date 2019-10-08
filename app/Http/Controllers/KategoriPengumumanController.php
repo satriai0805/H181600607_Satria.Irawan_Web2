@@ -7,33 +7,26 @@ use App\KategoriPengumuman;
 
 class KategoriPengumumanController extends Controller
 {
-    public function index(){
-        //Eloquent
-        $listKategoriPengumuman=KategoriPengumuman::all();
+    public function index()
+    {
+    	$KategoriPengumuman = \App\KategoriPengumuman::all();
 
-        //return view('kategori_pengumuman.index',compact('listKategoriPengumuman'));
-        return view('kategori_pengumuman.index')->with('data',$listKategoriPengumuman);
+    	return view('kategori_pengumuman.index',compact('KategoriPengumuman'));    
     }
+    
+    public function show($id)
+    {
+    	$KategoriPengumuman = \App\KategoriPengumuman::find($id);
 
-    public function show($id){
-        //Eloquent
-        //$kategoriPengumuman=KategoriPengumuman::where('id',$id)->first;
-        $kategoriPengumuman=KategoriPengumuman::find($id);
-
-        return view('kategori_pengumuman.show',compact('kategoriPengumuman'));
+    	return view('kategori_pengumuman.show',compact('KategoriPengumuman'));    
     }
 
     public function create(){
-        $kategoriPengumuman=KategoriPengumuman::pluck('nama');
-
-        return view('kategori_pengumuman.create',compact('kategoriPengumuman'));
+    	return view('kategori_pengumuman.create');
     }
-
-    public function store(request $request){
-        $input = $request->all();
-
-        KategoriPengumuman::create($input);
-
-        return redirect(route('kategori_pengumuman.index'));
+    public function store(Request $request){
+    	$input=$request->all();
+    	KategoriPengumuman::create($input);
+    	return redirect(route('kategori_pengumuman.index'));
     }
 }

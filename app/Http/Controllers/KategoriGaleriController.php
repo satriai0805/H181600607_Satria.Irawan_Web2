@@ -7,33 +7,26 @@ use App\KategoriGaleri;
 
 class KategoriGaleriController extends Controller
 {
-    public function index(){
-        //Eloquent
-        $listKategoriGaleri=KategoriGaleri::all();
+    public function index()
+    {
+    	$KategoriGaleri = \App\KategoriGaleri::all();
 
-        //return view('kategori_galeri.index',compact('listKategoriGaleri'));
-        return view('kategori_galeri.index')->with('data',$listKategoriGaleri);
+    	return view('kategori_galeri.index',compact('KategoriGaleri'));    
     }
+    
+    public function show($id)
+    {
+    	$KategoriGaleri = \App\KategoriGaleri::find($id);
 
-    public function show($id){
-        //Eloquent
-        //$kategoriGaleri=KategoriGaleri::where('id',$id);
-        $kategoriGaleri=KategoriGaleri::find($id);
-
-        return view('kategori_galeri.show',compact('kategoriGaleri'));
+    	return view('kategori_galeri.show',compact('KategoriGaleri'));    
     }
 
     public function create(){
-        $kategoriGaleri=KategoriGaleri::pluck('nama');
-
-        return view('kategori_galeri.create',compact('kategoriGaleri'));
+    	return view('kategori_galeri.create');
     }
-
-    public function store(request $request){
-        $input = $request->all();
-
-        KategoriGaleri::create($input);
-
-        return redirect($url = route('kategori_galeri.index'));
+    public function store(Request $request){
+    	$input=$request->all();
+    	KategoriGaleri::create($input);
+    	return redirect(route('kategori_galeri.index'));
     }
 }

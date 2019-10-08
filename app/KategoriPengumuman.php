@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class KategoriPengumuman extends Model
 {
-    protected $table='kategori_pengumuman';
+	protected $table="kategori_pengumuman";
 
-    protected $fillable=[
-        'nama', 'users_id', 'created_at','update_at',
-    ];
+	protected $fillable=[
+	'nama', 'users_id', 'updated_at', 'created_at',
+	];
 
-    protected $casts=[
-        
-    ];
+	protected $casts=[
+
+	];
 }

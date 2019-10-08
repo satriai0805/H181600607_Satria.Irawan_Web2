@@ -6,13 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class KategoriBerita extends Model
 {
-    protected $table='kategori_berita';
+	protected $table="kategori_berita";
+	
+	protected $fillable=[
+		'nama','users_id'
+	];
 
-    protected $fillable=[
-        'nama', 'users_id', 'created_at','update_at',
-    ];
-
-    protected $casts=[
-        
-    ];
+	protected $casts=[];
 }

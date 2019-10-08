@@ -4,38 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Galeri;
+use App\KategoriGaleri;
 
 class GaleriController extends Controller
 {
-    public function index(){
-        //Eloquent
-        $listGaleri=Galeri::all();
+    public function index()
+    {
+    	$Galeri = \App\Galeri::all();
 
-        //return view('galeri.index',compact('listGaleri'));
-        return view('galeri.index')->with('data',$listGaleri);
+    	return view('galeri.index',compact('Galeri'));    
     }
+    
+    public function show($id)
+    {
+    	$Galeri = \App\Galeri::find($id);
 
-    public function show($id){
-        //Eloquent
-        //$Galeri=Galeri::where('id',$id)->first;
-        $listGaleri=Galeri::find($id);
-
-        //return view('galeri.show',compact('listGaleri'));
-        return view('galeri.show')->with('data',$listGaleri);
+    	return view('galeri.show',compact('Galeri'));    
     }
 
     public function create(){
-        $listGaleri=Galeri::pluck('nama','keterangan','path','users_id','kategori_galeri_id');
 
-        //return view('galeri.create',compact('listGaleri'));
-        return view('galeri.create')->with($listGaleri);
+        $KategoriGaleri= \App\KategoriGaleri::pluck ('nama','id');
+
+        return view('galeri.create',compact('KategoriGaleri'));
     }
-
-    public function store(request $request){
-        $input = $request->all();
-
-        Galeri::create($input);
-
-        return redirect(route('galeri.index'));
+     public function store(Request $request){
+        $input=$request->all();
+       Galeri::create($input);
+       return redirect(route('galeri.index'));
+       
     }
-}
+    
+}  

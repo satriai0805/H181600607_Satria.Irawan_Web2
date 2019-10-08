@@ -7,33 +7,26 @@ use App\KategoriArtikel;
 
 class KategoriArtikelController extends Controller
 {
-    public function index(){
-        //Eloquent
-        $listKategoriArtikel=KategoriArtikel::all();
+    public function index()
+    {
+    	$KategoriArtikel = \App\KategoriArtikel::all();
 
-        //return view('kategori_artikel.index',compact('listKategoriArtikel'));
-        return view('kategori_artikel.index')->with('data',$listKategoriArtikel);
+    	return view('kategori_artikel.index',compact('KategoriArtikel'));    
     }
+    
+    public function show($id)
+    {
+    	$KategoriArtikel = \App\KategoriArtikel::find($id);
 
-    public function show($id){
-        //Eloquent
-        //$kategoriArtikel=KategoriArtikel::where('id',$id)->first;
-        $kategoriArtikel=KategoriArtikel::find($id);
-
-        return view('kategori_artikel.show',compact('kategoriArtikel'));
+    	return view('kategori_artikel.show',compact('KategoriArtikel'));    
     }
 
     public function create(){
-        $kategoriArtikel=KategoriArtikel::pluck('nama');
-
-        return view('kategori_artikel.create',compact('kategoriArtikel'));
+    	return view('kategori_artikel.create');
     }
-
-    public function store(request $request){
-        $input = $request->all();
-
-        KategoriArtikel::create($input);
-
-        return redirect(route('kategori_artikel.index'));
+    public function store(Request $request){
+    	$input=$request->all();
+    	KategoriArtikel::create($input);
+    	return redirect(route('kategori_artikel.index'));
     }
 }

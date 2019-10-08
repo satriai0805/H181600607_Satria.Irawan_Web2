@@ -7,33 +7,26 @@ use App\KategoriBerita;
 
 class KategoriBeritaController extends Controller
 {
-    public function index(){
-        //Eloquent
-        $listKategoriBerita=KategoriBerita::all();
+    public function index()
+    {
+    	$KategoriBerita = \App\KategoriBerita::all();
 
-        //return view('kategori_berita.index',compact('listKategoriBerita'));
-        return view('kategori_berita.index')->with('data',$listKategoriBerita);
+    	return view('kategori_berita.index',compact('KategoriBerita'));    
     }
+    
+    public function show($id)
+    {
+    	$KategoriBerita = \App\KategoriBerita::find($id);
 
-    public function show($id){
-        //Eloquent
-        //$kategoriBerita=KategoriBerita::where('id',$id)->first;
-        $kategoriBerita=KategoriBerita::find($id);
-
-        return view('kategori_berita.show',compact('kategoriBerita'));
+    	return view('kategori_berita.show',compact('KategoriBerita'));    
     }
 
     public function create(){
-        $kategoriBerita=KategoriBerita::pluck('nama','id');
-
-        return view('kategori_berita.create',compact('kategoriBerita'));
+    	return view('kategori_berita.create');
     }
-
-    public function store(request $request){
-        $input = $request->all();
-
-        KategoriBerita::create($input);
-
-        return redirect(route('kategori_berita.index'));
+    public function store(Request $request){
+    	$input=$request->all();
+    	KategoriBerita::create($input);
+    	return redirect(route('kategori_berita.index'));
     }
 }

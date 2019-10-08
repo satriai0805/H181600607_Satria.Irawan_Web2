@@ -4,36 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pengumuman;
+use App\KategoriPengumuman;
 
 class PengumumanController extends Controller
 {
-    public function index(){
-        //Eloquent
-        $listPengumuman=Pengumuman::all();
+    public function index()
+    {
+    	$Pengumuman = \App\Pengumuman::all();
 
-        //return view('pengumuman.index',compact('listPengumuman'));
-        return view('pengumuman.index')->with('data',$listPengumuman);
+    	return view('pengumuman.index',compact('Pengumuman'));    
     }
+    
+    public function show($id)
+    {
+    	$Pengumuman = \App\Pengumuman::find($id);
 
-    public function show($id){
-        //Eloquent
-        //$Pengumuman=Pengumuman::where('id',$id)->first;
-        $Pengumuman=Pengumuman::find($id);
-
-        return view('pengumuman.show',compact('Pengumuman'));
+    	return view('pengumuman.show',compact('Pengumuman'));    
     }
 
     public function create(){
-        $Pengumuman=Pengumuman::pluck('judul','isi','kategori_pengumuman_id');
 
-        return view('pengumuman.create',compact('Pengumuman'));
+        $KategoriPengumuman= \App\KategoriPengumuman::pluck ('nama','id');
+
+        return view('pengumuman.create',compact('KategoriPengumuman'));
     }
-
-    public function store(request $request){
-        $input = $request->all();
-
-        Pengumuman::create($input);
-
-        return redirect(route('pengumuman.index'));
+     public function store(Request $request){
+        $input=$request->all();
+       Pengumuman::create($input);
+       return redirect(route('pengumuman.index'));
+       
     }
-}
+    
+}  
